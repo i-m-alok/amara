@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "./ui/button"
 import { ProductCard } from "./ProductCard"
 import { ProductModal } from "./ProductModal"
@@ -15,14 +15,27 @@ export const CatalogueSection = ({ initialCategory = 'all' }: CatalogueSectionPr
   const [selectedCategory, setSelectedCategory] = useState(initialCategory)
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [modalOpen, setModalOpen] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(10)
 
   const filteredProducts = selectedCategory === 'all'
     ? products
     : products.filter(p => p.category === selectedCategory)
+  
+  const displayedProducts = filteredProducts.slice(0, visibleCount)
+  const hasMore = visibleCount < filteredProducts.length
+
+  // Reset visible count when category changes
+  useEffect(() => {
+    setVisibleCount(10)
+  }, [selectedCategory])
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product)
     setModalOpen(true)
+  }
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 12)
   }
 
   return (
@@ -55,21 +68,36 @@ export const CatalogueSection = ({ initialCategory = 'all' }: CatalogueSectionPr
           {/* Product Count */}
           <div className="text-center mb-8">
             <p className="font-body text-brand-brown/60">
-              Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
+              Showing {displayedProducts.length} of {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
             </p>
           </div>
 
           {/* Product Grid */}
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  onClick={() => handleProductClick(product)}
-                />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {displayedProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    onClick={() => handleProductClick(product)}
+                  />
+                ))}
+              </div>
+
+              {/* Load More Button */}
+              {hasMore && (
+                <div className="text-center mt-12">
+                  <Button
+                    onClick={handleLoadMore}
+                    size="lg"
+                    className="px-8"
+                  >
+                    Load More Products
+                  </Button>
+                </div>
+              )}
+            </>
           ) : (
             <div className="text-center py-16">
               <Package className="w-16 h-16 text-brand-brown/30 mx-auto mb-4" />
