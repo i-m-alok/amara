@@ -95,6 +95,15 @@ export const ProductModal = ({ product, open, onOpenChange }: ProductModalProps)
                 <Mail className="w-5 h-5" />
                 Contact Us
               </Button>
+
+              <Button
+                onClick={() => onOpenChange(false)}
+                variant="ghost"
+                className="w-full gap-2 md:hidden"
+                size="lg"
+              >
+                Close
+              </Button>
             </div>
           </div>
         </div>
