@@ -15,13 +15,13 @@ export const ProductModal = ({ product, open, onOpenChange }: ProductModalProps)
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(`Hi! I'm interested in ${product.name} (${product.price})`)
-    window.open(`https://wa.me/919876543210?text=${message}`, '_blank')
+    window.open(`https://wa.me/918217088119?text=${message}`, '_blank')
   }
 
   const handleEmailClick = () => {
     const subject = encodeURIComponent(`Inquiry about ${product.name}`)
     const body = encodeURIComponent(`Hi,\n\nI'm interested in ${product.name} (${product.price}).\n\nPlease provide more details.\n\nThank you!`)
-    window.location.href = `mailto:hello@amaragifts.com?subject=${subject}&body=${body}`
+    window.location.href = `mailto:amaragiftboutique@gmail.com?subject=${subject}&body=${body}`
   }
 
   const getCategoryName = (category: string) => {

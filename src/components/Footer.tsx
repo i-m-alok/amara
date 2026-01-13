@@ -52,29 +52,29 @@ export const Footer = () => {
             </h3>
             <div className="space-y-3">
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/918217088119"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-brand-brown/80 hover:text-green-600 transition-colors"
               >
                 <MessageCircle className="w-5 h-5" />
-                <span className="font-body text-sm">+91 98765 43210</span>
+                <span className="font-body text-sm">+91 82170 88119</span>
               </a>
               <a
-                href="mailto:hello@amaragifts.com"
+                href="mailto:amaragiftboutique@gmail.com"
                 className="flex items-center gap-2 text-brand-brown/80 hover:text-brand-mauve transition-colors"
               >
                 <Mail className="w-5 h-5" />
-                <span className="font-body text-sm">hello@amaragifts.com</span>
+                <span className="font-body text-sm">amaragiftboutique@gmail.com</span>
               </a>
               <a
-                href="https://instagram.com/amaragifts"
+                href="https://instagram.com/amara_giftboutique"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-brand-brown/80 hover:text-pink-600 transition-colors"
               >
                 <Instagram className="w-5 h-5" />
-                <span className="font-body text-sm">@amaragifts</span>
+                <span className="font-body text-sm">@amara_giftboutique</span>
               </a>
             </div>
           </div>
